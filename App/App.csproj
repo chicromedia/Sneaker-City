@@ -50,6 +50,8 @@
       <Folder Include="ClientApp\src\app\Features\feed\services" />
       <Folder Include="ClientApp\src\app\Features\stock\services" />
       <Folder Include="ClientApp\src\app\Layout\components" />
+      <Folder Include="ClientApp\src\app\Layout\enums" />
+      <Folder Include="ClientApp\src\app\Layout\models" />
       <Folder Include="Models" />
       <Folder Include="Shared\Interfaces" />
       <Folder Include="Shared\Services" />

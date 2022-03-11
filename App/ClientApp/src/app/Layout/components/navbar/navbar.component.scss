@@ -1,0 +1,46 @@
+@import "~src/styles/variables";
+
+:host {
+  box-shadow: inset 0 -1px 0 0 #e5e5e5;
+}
+
+.navbar {
+  &-brand {
+    padding: 0 2rem;
+    margin: unset;
+  }
+}
+
+.nav {
+  &-link {
+    padding: 0 1.5rem;
+    color: $primary;
+    line-height: 53px;
+    text-transform: capitalize;
+
+    &.active, &:hover {
+      color: $primary;
+      background-color: transparent;
+
+      &:after {
+        opacity: 1;
+      }
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      box-shadow: inset 0 -2px 0 0 #111;
+      height: 4px;
+      opacity: 0;
+      margin-bottom: 0;
+      transition: opacity 0.2s ease;
+    }
+  }
+}
+
+.toggle {
+  &-view {
+    padding: 0 1rem;
+  }
+}

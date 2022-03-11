@@ -1,6 +1,6 @@
 import { Route } from "@angular/router";
 
-interface IMainRoute extends Route
+export interface IMainRoute extends Route
 {
   data?: {
     title: string

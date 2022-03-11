@@ -1,17 +1,23 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout.component';
-import { HeaderComponent } from './components/header/header.component';
+import { NavbarComponent } from "./components/navbar/navbar.component";
+import { SharedModule } from "../Shared/shared.module";
+import { CommonModule } from "@angular/common";
+import { NgxsModule } from "@ngxs/store";
+import { MenuState } from "./state-management/menu-state";
 
 
-
-@NgModule({
+@NgModule( {
+  imports: [
+    CommonModule,
+    NgxsModule.forFeature( [ MenuState ] ),
+    SharedModule
+  ],
   declarations: [
     LayoutComponent,
-    HeaderComponent
-  ],
-  imports: [
-    CommonModule
+    NavbarComponent
   ]
-})
-export class LayoutModule { }
+} )
+export class LayoutModule
+{
+}
