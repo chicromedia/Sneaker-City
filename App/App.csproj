@@ -12,6 +12,7 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="6.0.3" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.3" />
     </ItemGroup>
 
     <ItemGroup>
@@ -46,15 +47,11 @@
 
     <ItemGroup>
       <Folder Include="ClientApp\src\app\Features" />
-      <Folder Include="ClientApp\src\app\Features\coming\services" />
-      <Folder Include="ClientApp\src\app\Features\feed\services" />
-      <Folder Include="ClientApp\src\app\Features\stock\services" />
       <Folder Include="ClientApp\src\app\Layout\components" />
       <Folder Include="ClientApp\src\app\Layout\enums" />
       <Folder Include="ClientApp\src\app\Layout\models" />
-      <Folder Include="Models" />
-      <Folder Include="Shared\Interfaces" />
-      <Folder Include="Shared\Services" />
+      <Folder Include="ClientApp\src\app\Shared\pipes" />
+      <Folder Include="ClientApp\src\app\Shared\services" />
     </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

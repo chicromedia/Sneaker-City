@@ -1,0 +1,19 @@
+<div class="card" [ngClass]="{'in-stock': !!item.inStock}">
+  <ng-container *ngIf="item.images?.length">
+    <img class="card-img-top" [src]="item.images[0].path | imageUrl" [attr.alt]="item.name" loading="lazy">
+  </ng-container>
+
+  <div class="card-footer">
+    <ng-container *ngIf="item.inStock; else soldOut">
+      <a class="btn btn-primary rounded" [routerLink]="['/details', item.guid]">Learn More</a>
+    </ng-container>
+
+    <ng-template #soldOut>
+      <h3 class="card-title">
+        <small>{{item.type.name}}</small><br>
+        {{item.name}}
+      </h3>
+      <a class="btn btn-primary rounded">Notify Me</a>
+    </ng-template>
+  </div>
+</div>

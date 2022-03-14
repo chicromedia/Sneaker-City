@@ -1,0 +1,24 @@
+@import "variables";
+
+.btn {
+  &-primary {
+    color: #fff;
+    background-color: $primary;
+
+    &, &:hover, &:focus:active, &:focus {
+      border-color: transparent;
+      outline: none;
+      background-color: $primary;
+      box-shadow: unset;
+    }
+
+    &:not([disabled]):not(.disabled):hover {
+      background-color: rgba(0, 0, 0, .75);
+    }
+  }
+
+  &.rounded {
+    padding: 8px 24px;
+    border-radius: 20px !important;
+  }
+}

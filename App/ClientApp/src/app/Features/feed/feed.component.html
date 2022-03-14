@@ -1,1 +1,3 @@
-<p>feed works!</p>
+<div class="row">
+  <card [item]="item" *ngFor="let item of list$ | async"></card>
+</div>

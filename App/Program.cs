@@ -1,13 +1,30 @@
+using System.Text.Json.Serialization;
+using App.Shared.Db;
+using App.Shared.Interfaces;
+using App.Shared.Middlewares;
+using App.Shared.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers()
+    .AddJsonOptions(opt => opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+builder.Services.AddDbContext<SqlContext>(opt => opt.UseInMemoryDatabase("SneakerCity"));
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 {
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseMiddleware<HttpErrorMiddleware>();
+}
+else
+{
+    app.UseStatusCodePages();
     app.UseHsts();
 }
 

@@ -1,0 +1,75 @@
+:host {
+  display: block;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.card {
+  border-color: transparent;
+  border-radius: unset;
+
+  &-img-top {
+    cursor: pointer;
+    transition: opacity 1s ease 0s;
+    opacity: 1;
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    background-color: unset;
+    border-top: unset;
+    min-height: 130px;
+
+    .card-title {
+      font-weight: 500;
+      font-size: 2rem;
+      line-height: 1.16;
+      transition: opacity 300ms ease 0ms;
+
+      small {
+        font-weight: 500;
+        font-size: 1rem;
+      }
+    }
+
+    .btn {
+      position: absolute;
+      align-self: center;
+      transition: opacity 300ms ease 0ms;
+    }
+  }
+
+  &:hover {
+    .card-img-top {
+      opacity: .8;
+    }
+  }
+
+  &:not(.in-stock) {
+    .card-footer {
+      .card-title {
+        opacity: 1;
+      }
+
+      .btn {
+        opacity: 0;
+      }
+    }
+
+    &:hover {
+      .card-footer {
+        .card-title {
+          opacity: 0;
+        }
+
+        .btn {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

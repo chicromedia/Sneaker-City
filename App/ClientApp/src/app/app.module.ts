@@ -7,6 +7,7 @@ import { AppRoutingModule } from "./app.routing.module";
 import { LayoutModule } from "./Layout/layout.module";
 import { NgxsModule } from "@ngxs/store";
 import { environment } from "../environments/environment";
+import { CommonState } from "./Shared/state-management/common-state";
 
 @NgModule( {
   imports: [
@@ -14,7 +15,11 @@ import { environment } from "../environments/environment";
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    NgxsModule.forRoot( [], { developmentMode: !environment.production } ),
+    NgxsModule.forRoot( [
+        CommonState
+      ],
+      { developmentMode: !environment.production }
+    ),
     LayoutModule
   ],
   declarations: [
