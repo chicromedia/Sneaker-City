@@ -1,0 +1,68 @@
+<div class="row">
+  <ng-container *ngIf="info$ | async as details">
+    <div class="col-md-8">
+      <image-grid [source]="details.images"></image-grid>
+    </div>
+
+    <div class="col-md-4">
+      <aside class="container text-center">
+        <div class="product-info">
+          <h1 class="product-subtitle mb-0">
+            {{details.type.name}}
+          </h1>
+          <h5 class="product-title mb-0">
+            {{details.name}}
+          </h5>
+          <span class="product-price">{{details.price | currency: 'USD':'symbol' : '1.0-0'}}</span>
+          <ng-container *ngIf="!details.inStock">
+            <span class="product-available-date">Available {{details.purchaseStartDate | date:'M/d'}} at {{details.purchaseStartDate | date:'h:mm a'}}</span>
+          </ng-container>
+
+          <div class="product-description">
+            <p>Remastered and reground for a radically different style — the Air Max Terrascape Plus is here for a new generation of Air Max. Made out of 20% recycled material by weight, this style uses
+              sustainable materials for a lighter footprint — literally and for the planet.
+            </p>
+            <p>
+              Keeping with Air Max Plus tradition, its floating Swoosh cage highlights the style and is made of 20% recycled TPU. The sneaker’s Nike Grind outsole is made of 13.5% recycled rubber, and the
+              haptic texture upper is made of recycled material as well — 75% recycled polyester on the vamp with 100% recycled polyester laces. Through a confluence of high-tech and natural components, the new
+              Air
+              Max Terrascape Plus brings us to a whole new world of sneaker design.
+            </p>
+          </div>
+        </div>
+
+        <ng-container *ngIf="details.inStock">
+          <div class="product-size-tools">
+            <ul class="nav mx-auto">
+              <li *ngFor="let size of details.sizes" class="nav-item">
+                <button class="btn product-size-button"
+                        type="button"
+                        [ngClass]="{'disabled': !size.stock, 'selected':selected && selected.id == size.id}"
+                        (click)="selected = size"
+                >{{size.name}}</button>
+              </li>
+            </ul>
+
+            <p class="product-size-stock">
+              <ng-container *ngIf="selected && selected.stock">
+                {{availableLabel}}
+              </ng-container>
+            </p>
+          </div>
+        </ng-container>
+
+        <div class="product-action">
+          <ng-container *ngIf="details.inStock; else soldOut">
+            <button class="btn btn-primary rounded" [disabled]="!selected">
+              Buy {{details.price | currency: 'USD':'symbol' : '1.0-0'}}
+            </button>
+          </ng-container>
+
+          <ng-template #soldOut>
+            <button class="btn btn-primary rounded">Notify Me</button>
+          </ng-template>
+        </div>
+      </aside>
+    </div>
+  </ng-container>
+</div>

@@ -3,7 +3,7 @@ import { ProductService } from "../../../Shared/services/product.service";
 import { tap } from "rxjs/operators";
 import { IProduct } from "../../../Shared/interfaces/product";
 import { Injectable } from "@angular/core";
-import { LoadInStock } from "./stock-actions";
+import { ClearInStock, LoadInStock } from "./stock-actions";
 
 interface IStockState
 {
@@ -33,5 +33,11 @@ export class StockState
           patchState( { list } );
         } )
       )
+  }
+
+  @Action( ClearInStock )
+  clear( { patchState }: StateContext<IStockState> )
+  {
+    patchState( { list: [] } );
   }
 }

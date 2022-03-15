@@ -50,6 +50,7 @@
       <Folder Include="ClientApp\src\app\Layout\components" />
       <Folder Include="ClientApp\src\app\Layout\enums" />
       <Folder Include="ClientApp\src\app\Layout\models" />
+      <Folder Include="ClientApp\src\app\Shared\components" />
       <Folder Include="ClientApp\src\app\Shared\pipes" />
       <Folder Include="ClientApp\src\app\Shared\services" />
     </ItemGroup>

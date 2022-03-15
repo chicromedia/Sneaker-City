@@ -1,7 +1,6 @@
 :host {
   display: block;
   padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 .card {
@@ -26,12 +25,12 @@
   &-footer {
     display: flex;
     justify-content: center;
-    padding: 1.5rem;
+    padding: 1.3rem;
     text-align: center;
     position: relative;
     background-color: unset;
     border-top: unset;
-    min-height: 130px;
+    min-height: 120px;
 
     .card-title {
       font-weight: 500;

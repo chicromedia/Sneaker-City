@@ -18,7 +18,15 @@ public class ProductRepository : IProductRepository
         => _context.Products
             .Include(p => p.Images)
             .Include(p => p.Type)
+            .Include(p => p.Sizes!.OrderBy(s => s.Id))
+            .AsEnumerable()
+            .Select(p =>
+            {
+                p.InStock = DateTime.Today >= p.PurchaseStartDate && DateTime.Today <= p.PurchaseEndDate;
+                return p;
+            })
             .FirstOrDefault(p => p!.Guid == guid);
+
 
     public IEnumerable<Product> Find() =>
         _context.Products

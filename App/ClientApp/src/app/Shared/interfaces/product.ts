@@ -1,5 +1,6 @@
 import { Image } from "./image";
 import { ProductType } from "./product-type";
+import { ISize } from "./size";
 
 export interface IProduct
 {
@@ -12,5 +13,7 @@ export interface IProduct
   publishDate: string;
   purchaseStartDate: string;
   purchaseEndDate: string;
+  price: number;
   images: Image[];
+  sizes: ISize[];
 }

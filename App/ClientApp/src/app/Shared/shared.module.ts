@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
-import { CardComponent } from './card/card.component';
 import { ImageUrlPipe } from './pipes/image-url.pipe';
+import { CardComponent } from "./components/card/card.component";
+import { ImageGridComponent } from './components/image-grid/image-grid.component';
 
 
 @NgModule( {
@@ -12,12 +13,15 @@ import { ImageUrlPipe } from './pipes/image-url.pipe';
   ],
   declarations: [
     CardComponent,
-    ImageUrlPipe
+    ImageUrlPipe,
+    ImageGridComponent
   ],
   exports: [
     CommonModule,
     RouterModule,
-    CardComponent
+    CardComponent,
+    ImageUrlPipe,
+    ImageGridComponent
   ]
 } )
 export class SharedModule

@@ -3,7 +3,7 @@ import { ProductService } from "../../../Shared/services/product.service";
 import { IProduct } from "../../../Shared/interfaces/product";
 import { tap } from "rxjs/operators";
 import { Injectable } from "@angular/core";
-import { LoadUpComing } from "./coming-actions";
+import { ClearUpComing, LoadUpComing } from "./coming-actions";
 
 interface IComingState
 {
@@ -33,5 +33,11 @@ export class ComingState
           patchState( { list } );
         } )
       )
+  }
+
+  @Action( ClearUpComing )
+  clear( { patchState }: StateContext<IComingState> )
+  {
+    patchState( { list: [] } );
   }
 }

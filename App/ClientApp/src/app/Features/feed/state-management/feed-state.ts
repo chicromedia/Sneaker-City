@@ -1,5 +1,5 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
-import { LoadFeeds } from "./feed-actions";
+import { ClearFeeds, LoadFeeds } from "./feed-actions";
 import { tap } from "rxjs/operators";
 import { IProduct } from "../../../Shared/interfaces/product";
 import { ProductService } from "../../../Shared/services/product.service";
@@ -33,5 +33,11 @@ export class FeedState
           patchState( { list } );
         } )
       )
+  }
+
+  @Action( ClearFeeds )
+  clear( { patchState }: StateContext<IFeedState> )
+  {
+    patchState( { list: [] } );
   }
 }

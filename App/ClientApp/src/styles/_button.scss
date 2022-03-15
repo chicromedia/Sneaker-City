@@ -5,7 +5,7 @@
     color: #fff;
     background-color: $primary;
 
-    &, &:hover, &:focus:active, &:focus {
+    &, &:hover, &:focus:active, &:focus, &:disabled {
       border-color: transparent;
       outline: none;
       background-color: $primary;
@@ -19,6 +19,12 @@
 
   &.rounded {
     padding: 8px 24px;
-    border-radius: 20px !important;
+    border-radius: 30px !important;
+  }
+
+  &:disabled {
+    cursor: default;
+    background: #f5f5f5;
+    color: #ccc;
   }
 }

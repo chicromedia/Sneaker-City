@@ -1,8 +1,4 @@
-using System.ComponentModel;
-using System.Text.Json.Serialization;
 using App.Shared.Enums;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 namespace App.Models;
 

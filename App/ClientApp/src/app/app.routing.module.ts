@@ -29,6 +29,11 @@ const APP_ROUTES: MainRoutes = [
     }
   },
   {
+    path: "details",
+    component: LayoutComponent,
+    loadChildren: () => import("./Features/details/details.module").then( m => m.DetailsModule )
+  },
+  {
     path: "**", redirectTo: "/", pathMatch: "full"
   }
 ]

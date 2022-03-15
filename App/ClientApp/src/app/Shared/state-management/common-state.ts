@@ -1,6 +1,8 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
-import { Injectable } from "@angular/core";
-import { SetPreload } from "./common-actions";
+import { Injectable, NgZone } from "@angular/core";
+import { GoToPage, SetPreload } from "./common-actions";
+import { Router } from "@angular/router";
+import { fromPromise } from "rxjs/internal-compatibility";
 
 interface ICommonState
 {
@@ -16,7 +18,7 @@ interface ICommonState
 @Injectable()
 export class CommonState
 {
-  constructor() {}
+  constructor( private router: Router, private zone: NgZone ) {}
 
   @Selector()
   loading( { loading }: ICommonState )
@@ -28,5 +30,14 @@ export class CommonState
   preload( { patchState }: StateContext<ICommonState>, { payload }: SetPreload )
   {
     patchState( { loading: payload } );
+  }
+
+  @Action( GoToPage )
+  goToPage( {}: StateContext<ICommonState>, { payload }: GoToPage )
+  {
+    return fromPromise( this.zone.run( () => Array.isArray( payload )
+      ? this.router.navigate( payload )
+      : this.router.navigateByUrl( payload )
+    ) );
   }
 }

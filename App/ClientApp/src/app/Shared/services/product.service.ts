@@ -13,6 +13,11 @@ export class ProductService
 
   constructor( private http: HttpClient ) { }
 
+  getFirstByGuid( guid?: string | null )
+  {
+    return this.http.get<IProduct>( `${ this.API_BASE_URL }/details/${ guid }` );
+  }
+
   getAllFeeds()
   {
     return this.http.get<IProduct[]>( `${ this.API_BASE_URL }/feed` );
