@@ -10,7 +10,7 @@ import { MenuState } from "./state-management/menu-state";
 @NgModule( {
   imports: [
     CommonModule,
-    NgxsModule.forFeature( [ MenuState ] ),
+    NgxsModule,
     SharedModule
   ],
   declarations: [

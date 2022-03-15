@@ -34,6 +34,11 @@ const APP_ROUTES: MainRoutes = [
     loadChildren: () => import("./Features/details/details.module").then( m => m.DetailsModule )
   },
   {
+    path: "cart",
+    component: LayoutComponent,
+    loadChildren: () => import("./Features/cart/cart.module").then( m => m.CartModule )
+  },
+  {
     path: "**", redirectTo: "/", pathMatch: "full"
   }
 ]

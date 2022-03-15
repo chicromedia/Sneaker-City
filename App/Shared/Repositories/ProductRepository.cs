@@ -26,8 +26,7 @@ public class ProductRepository : IProductRepository
                 return p;
             })
             .FirstOrDefault(p => p!.Guid == guid);
-
-
+    
     public IEnumerable<Product> Find() =>
         _context.Products
             .Include(p => p.Images!.Where(i => i.Featured == Available.Yes))

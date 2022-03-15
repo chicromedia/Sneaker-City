@@ -47,6 +47,8 @@
 
     <ItemGroup>
       <Folder Include="ClientApp\src\app\Features" />
+      <Folder Include="ClientApp\src\app\Features\cart\interfaces" />
+      <Folder Include="ClientApp\src\app\Features\cart\services" />
       <Folder Include="ClientApp\src\app\Layout\components" />
       <Folder Include="ClientApp\src\app\Layout\enums" />
       <Folder Include="ClientApp\src\app\Layout\models" />

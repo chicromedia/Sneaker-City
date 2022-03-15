@@ -8,6 +8,9 @@ import { LayoutModule } from "./Layout/layout.module";
 import { NgxsModule } from "@ngxs/store";
 import { environment } from "../environments/environment";
 import { CommonState } from "./Shared/state-management/common-state";
+import { CartState } from "./Features/cart/state-management/cart-state";
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { MenuState } from "./Layout/state-management/menu-state";
 
 @NgModule( {
   imports: [
@@ -15,12 +18,20 @@ import { CommonState } from "./Shared/state-management/common-state";
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    LayoutModule,
     NgxsModule.forRoot( [
-        CommonState
+        MenuState,
+        CommonState,
+        CartState
       ],
       { developmentMode: !environment.production }
     ),
-    LayoutModule
+    NgxsStoragePluginModule.forRoot( {
+      key: [
+        CommonState,
+        CartState
+      ]
+    } ),
   ],
   declarations: [
     AppComponent,

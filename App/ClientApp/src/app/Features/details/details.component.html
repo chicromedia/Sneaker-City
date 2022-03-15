@@ -53,7 +53,7 @@
 
         <div class="product-action">
           <ng-container *ngIf="details.inStock; else soldOut">
-            <button class="btn btn-primary rounded" [disabled]="!selected">
+            <button class="btn btn-primary rounded" (click)="buy(details)" [disabled]="!selected">
               Buy {{details.price | currency: 'USD':'symbol' : '1.0-0'}}
             </button>
           </ng-container>

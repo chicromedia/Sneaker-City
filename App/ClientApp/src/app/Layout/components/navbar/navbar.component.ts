@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { MenuItem } from "../../models/menu-item";
 import { ViewMode } from "../../enums/view-mode";
 import { ToggleViewMode } from "../../state-management/menu-actions";
+import { CartState } from "../../../Features/cart/state-management/cart-state";
 
 @Component( {
   selector: 'navbar',
@@ -16,6 +17,7 @@ export class NavbarComponent implements OnInit
 
   @Select( MenuState.viewMode ) modeView$!: Observable<ViewMode>;
   @Select( MenuState.items ) items$!: Observable<MenuItem[]>;
+  @Select( CartState.quantity ) quantity$: Observable<number>;
 
   constructor( private store: Store ) { }
 
