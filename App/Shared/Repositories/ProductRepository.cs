@@ -24,18 +24,34 @@ public class ProductRepository : IProductRepository
         _context.Products
             .Include(p => p.Images!.Where(i => i.Featured == Available.Yes))
             .Include(p => p.Type)
-            .OrderByDescending(p => p.Created);
+            .OrderByDescending(p => p.PurchaseStartDate)
+            .Take(10)
+            .AsEnumerable()
+            .Select(p =>
+            {
+                p.InStock = DateTime.Today >= p.PurchaseStartDate && DateTime.Today <= p.PurchaseEndDate;
+                return p;
+            });
 
     public IEnumerable<Product> FindInStock()
         => _context.Products
             .Include(p => p.Images!.Where(i => i.Featured == Available.Yes))
             .Include(p => p.Type)
-            .Where(p => p.InStock == Available.Yes)
-            .OrderByDescending(p => p.Created);
+            .Where(p => DateTime.Today >= p.PurchaseStartDate && DateTime.Today <= p.PurchaseEndDate)
+            .OrderByDescending(p => p.PurchaseStartDate)
+            .Take(10)
+            .AsEnumerable()
+            .Select(p =>
+            {
+                p.InStock = true;
+                return p;
+            });
 
     public IEnumerable<Product> FindUpComing()
         => _context.Products
             .Include(p => p.Images!.Where(i => i.Featured == Available.Yes))
-            .Where(p => p.Created < DateTime.Now)
-            .OrderByDescending(p => p.Created);
+            .Include(p => p.Type)
+            .Where(p => DateTime.Today < p.PurchaseStartDate)
+            .OrderByDescending(p => p.PurchaseStartDate)
+            .Take(10);
 }

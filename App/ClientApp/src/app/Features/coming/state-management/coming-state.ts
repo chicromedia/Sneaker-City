@@ -1,9 +1,9 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { ProductService } from "../../../Shared/services/product.service";
 import { IProduct } from "../../../Shared/interfaces/product";
-import { LoadFeeds } from "../../feed/state-management/feed-actions";
 import { tap } from "rxjs/operators";
 import { Injectable } from "@angular/core";
+import { LoadUpComing } from "./coming-actions";
 
 interface IComingState
 {
@@ -24,7 +24,7 @@ export class ComingState
     return list;
   }
 
-  @Action( LoadFeeds )
+  @Action( LoadUpComing )
   load( { patchState }: StateContext<IComingState> )
   {
     return this.service.getAllUpComing()

@@ -1,1 +1,6 @@
-<p>coming works!</p>
+<div class="row">
+  <card *ngFor="let item of list$ | async"
+        [item]="item"
+        [showDate]="true"
+  ></card>
+</div>

@@ -1,9 +1,9 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { ProductService } from "../../../Shared/services/product.service";
-import { LoadFeeds } from "../../feed/state-management/feed-actions";
 import { tap } from "rxjs/operators";
 import { IProduct } from "../../../Shared/interfaces/product";
 import { Injectable } from "@angular/core";
+import { LoadInStock } from "./stock-actions";
 
 interface IStockState
 {
@@ -24,7 +24,7 @@ export class StockState
     return list;
   }
 
-  @Action( LoadFeeds )
+  @Action( LoadInStock )
   load( { patchState }: StateContext<IStockState> )
   {
     return this.service.getAllInStock()

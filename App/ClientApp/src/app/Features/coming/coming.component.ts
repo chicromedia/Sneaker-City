@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Select, Store } from "@ngxs/store";
+import { ClearUpComing, LoadUpComing } from "./state-management/coming-actions";
+import { Observable } from "rxjs";
+import { IProduct } from "../../Shared/interfaces/product";
+import { ComingState } from "./state-management/coming-state";
 
-@Component({
+@Component( {
   selector: 'coming',
   templateUrl: './coming.component.html',
-  styleUrls: ['./coming.component.css']
-})
-export class ComingComponent implements OnInit {
+  styleUrls: [ './coming.component.css' ]
+} )
+export class ComingComponent implements OnInit, OnDestroy
+{
 
-  constructor() { }
+  @Select( ComingState.list ) list$: Observable<IProduct[]>;
 
-  ngOnInit(): void {
+  constructor( private store: Store ) { }
+
+  ngOnInit(): void
+  {
+    this.store.dispatch( new LoadUpComing() )
+  }
+
+  ngOnDestroy()
+  {
+    this.store.dispatch( new ClearUpComing() );
   }
 
 }

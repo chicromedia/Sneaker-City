@@ -16,6 +16,8 @@ export class CardComponent implements OnInit
   item!: IProduct;
   @Input()
   col: number = 4;
+  @Input()
+  showDate: boolean;
 
   constructor() { }
 

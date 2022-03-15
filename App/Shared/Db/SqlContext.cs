@@ -45,16 +45,16 @@ public sealed class SqlContext : DbContext
         );
 
         modelBuilder.Entity<Product>().HasData(
-            new Product { Id = 1, Name = "Playoffs", ProductTypeId = 1, InStock = Available.Yes },
-            new Product { Id = 2, Name = "Del Sol", ProductTypeId = 2 },
-            new Product { Id = 3, Name = "Dark Smoke Grey", ProductTypeId = 3, InStock = Available.Yes },
-            new Product { Id = 4, Name = "Vintage Green", ProductTypeId = 4, InStock = Available.Yes },
-            new Product { Id = 5, Name = "Matte Olive", ProductTypeId = 5, InStock = Available.No },
-            new Product { Id = 6, Name = "Furyosa", ProductTypeId = 6, InStock = Available.No },
-            new Product { Id = 7, Name = "Air Max Sleepers", ProductTypeId = 7, InStock = Available.Yes },
-            new Product { Id = 8, Name = "Mellow", ProductTypeId = 8, InStock = Available.Yes },
-            new Product { Id = 9, Name = "Air Max Running Club", ProductTypeId = 5, InStock = Available.Yes },
-            new Product { Id = 10, Name = "WM", ProductTypeId = 5, InStock = Available.Yes }
+            new Product { Id = 1, Name = "Playoffs", ProductTypeId = 1, PurchaseStartDate = DateTime.Today.AddDays(-15) },
+            new Product { Id = 2, Name = "Del Sol", ProductTypeId = 2, PurchaseStartDate = DateTime.Today.AddDays(-15) },
+            new Product { Id = 3, Name = "Dark Smoke Grey", ProductTypeId = 3, PurchaseStartDate = DateTime.Today.AddDays(-10) },
+            new Product { Id = 4, Name = "Vintage Green", ProductTypeId = 4, PurchaseStartDate = DateTime.Today.AddDays(-5) },
+            new Product { Id = 5, Name = "Matte Olive", ProductTypeId = 5, PurchaseStartDate = DateTime.Today.AddDays(5) },
+            new Product { Id = 6, Name = "Furyosa", ProductTypeId = 6, PurchaseStartDate = DateTime.Today.AddDays(20) },
+            new Product { Id = 7, Name = "Air Max Sleepers", ProductTypeId = 7, PurchaseStartDate = DateTime.Today.AddDays(-1) },
+            new Product { Id = 8, Name = "Mellow", ProductTypeId = 8, PurchaseStartDate = DateTime.Today.AddDays(-1) },
+            new Product { Id = 9, Name = "Air Max Running Club", PurchaseStartDate = DateTime.Today.AddDays(-1) },
+            new Product { Id = 10, Name = "WM", ProductTypeId = 5, PurchaseStartDate = DateTime.Today.AddDays(-1) }
         );
 
         modelBuilder.Entity<Product>()
