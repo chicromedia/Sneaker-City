@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from "@ngxs/store";
+import { Select, Store } from "@ngxs/store";
+import { Observable } from "rxjs";
+import { CartState } from "./state-management/cart-state";
+import { Invoice } from "./interfaces/invoice";
 
 @Component( {
   selector: 'cart',
@@ -11,6 +14,7 @@ import { Store } from "@ngxs/store";
 } )
 export class CartComponent implements OnInit
 {
+  @Select( CartState.review ) review$: Observable<Invoice>;
 
   constructor( private store: Store ) { }
 

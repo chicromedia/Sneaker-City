@@ -1,6 +1,6 @@
 export interface ICartRequest
 {
   productId: number;
-  quantity?: number;
-  sizeId: number;
+  quantity: number;
+  sizeId?: number;
 }

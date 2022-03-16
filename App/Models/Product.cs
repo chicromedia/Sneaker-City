@@ -13,8 +13,10 @@ public class Product
     public DateTime PurchaseStartDate { get; set; }
     public DateTime PurchaseEndDate { get; set; } = DateTime.Today.AddDays(20);
     public ProductType? Type { get; set; }
-    public ICollection<Image>? Images { get; set; }
-    public ICollection<Size>? Sizes { get; set; }
     public bool InStock { get; set; } = false;
     public double Price { get; set; }
+
+    public ICollection<Image>? Images { get; set; }
+    public ICollection<Size>? Sizes { get; set; }
+    public ICollection<InvoiceLine>? Lines { get; set; }
 }

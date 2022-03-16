@@ -124,6 +124,16 @@ public sealed class SqlContext : DbContext
             .ValueGeneratedOnAdd()
             .HasValueGenerator<FriendlyUrlGenerator>();
 
+        modelBuilder.Entity<Product>()
+            .HasMany(p => p.Lines)
+            .WithOne(l => l.Product)
+            .HasForeignKey(l => l.ProductId);
+
+        modelBuilder.Entity<Invoice>()
+            .HasMany(i => i.Lines)
+            .WithOne(l => l.Invoice)
+            .HasForeignKey(l => l.InvoiceId);
+
         base.OnModelCreating(modelBuilder);
     }
 }

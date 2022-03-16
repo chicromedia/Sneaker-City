@@ -3,6 +3,7 @@ import { CartComponent } from './cart.component';
 import { SharedModule } from "../../Shared/shared.module";
 import { RouterModule } from "@angular/router";
 import { CART_ROUTES } from "./routes";
+import { CartItemComponent } from './components/cart-item/cart-item.component';
 
 
 @NgModule( {
@@ -11,7 +12,8 @@ import { CART_ROUTES } from "./routes";
     RouterModule.forChild( CART_ROUTES )
   ],
   declarations: [
-    CartComponent
+    CartComponent,
+    CartItemComponent
   ]
 } )
 export class CartModule

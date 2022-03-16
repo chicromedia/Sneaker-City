@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+  padding: 1.5rem 0;
+  width: 100%;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #e5e5e5;
+  }
+}
+
+.cart-item {
+  &-name, &-category {
+    margin-bottom: 0.5rem;
+  }
+
+  &-body {
+    min-height: 140px;
+  }
+
+  &-thumbnail {
+    width: 180px;
+    padding-right: 16px;
+    display: table-cell;
+  }
+
+  &-wrap {
+    flex: 1 auto;
+    min-height: 123px;
+  }
+
+  &-selector-tools {
+    display: flex;
+    align-items: center;
+  }
+
+  &-price {
+    text-align: right;
+  }
+}

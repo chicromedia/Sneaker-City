@@ -12,4 +12,5 @@ public interface IProductRepository
     IEnumerable<Product> FindInStock();
 
     IEnumerable<Product> FindUpComing();
+    Product? FirstById(int id);
 }

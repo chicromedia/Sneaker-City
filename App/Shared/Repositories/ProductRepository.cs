@@ -14,6 +14,19 @@ public class ProductRepository : IProductRepository
     public ProductRepository(SqlContext context)
         => _context = context;
 
+    public Product? FirstById(int id)
+        => _context.Products
+            .Include(p => p.Images!.Where(i => i.Featured == Available.Yes))
+            .Include(p => p.Type)
+            .Include(p => p.Sizes!.OrderBy(s => s.Id))
+            .AsEnumerable()
+            .Select(p =>
+            {
+                p.InStock = DateTime.Today >= p.PurchaseStartDate && DateTime.Today <= p.PurchaseEndDate;
+                return p;
+            })
+            .FirstOrDefault(p => p!.Id == id);
+
     public Product? FirstByGuid(string guid)
         => _context.Products
             .Include(p => p.Images)
@@ -26,7 +39,7 @@ public class ProductRepository : IProductRepository
                 return p;
             })
             .FirstOrDefault(p => p!.Guid == guid);
-    
+
     public IEnumerable<Product> Find() =>
         _context.Products
             .Include(p => p.Images!.Where(i => i.Featured == Available.Yes))

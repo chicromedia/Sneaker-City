@@ -43,10 +43,15 @@
   &-preview {
     padding: 0 1rem;
 
-    &-count{
+    &-count {
       font-size: 12px;
       position: absolute;
       top: 1.4rem;
+    }
+
+    .btn-icon {
+      display: flex;
+      justify-content: center;
     }
   }
 }
