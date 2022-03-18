@@ -1,0 +1,102 @@
+<header class="checkout-header">
+  <h1 class="checkout-title">Checkout</h1>
+</header>
+
+<div class="row checkout-wrap">
+  <main class="col-md-8">
+    <section class="checkout-section">
+      <header class="checkout-section-header">
+        <h2 class="checkout-section-title">1. Delivery Options</h2>
+      </header>
+
+      <shipping-form></shipping-form>
+    </section>
+
+    <section class="checkout-section">
+      <header class="checkout-section-header">
+        <h2 class="checkout-section-title">2. Payment</h2>
+      </header>
+
+      <payment-form></payment-form>
+    </section>
+
+    <section class="checkout-section">
+      <header class="checkout-section-header">
+        <h2 class="checkout-section-title">3. Order Review</h2>
+      </header>
+    </section>
+  </main>
+
+  <aside class="col-md-4">
+    <section class="checkout-section">
+      <ng-container *ngIf="review$ | async as review">
+        <header class="checkout-section-header bg-secondary">
+          <h2 class="checkout-section-title">In Your Bag</h2>
+        </header>
+
+        <div class="order-summary p-3">
+          <div class="row">
+            <div class="col-sm-8">
+              <span class="subtotal-text">Subtotal</span>
+            </div>
+            <div class="col-sm-4 text-end">
+              {{review.subTotal | currency }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-9">
+              <div data-attr="shipping-text">Estimated Shipping</div>
+            </div>
+
+            <div class="col-sm-3 text-end">
+              $0.00
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-8">
+              <span data-attr="taxText">Estimated Tax</span>
+            </div>
+
+            <div class="col-sm-4 text-end">
+              $0.00
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-8">
+              <span class="order-total-text">Total</span>
+            </div>
+            <div class="col-sm-4 text-end">
+              {{review.total | currency}}
+            </div>
+          </div>
+        </div>
+
+        <div class="order-review p-3">
+          <div class="order-shipping text-uppercase mb-3">Arrives by Wed, Mar 30</div>
+
+          <div class="order-items">
+            <div class="d-flex" *ngFor="let item of review.lines">
+              <img class="img-fluid"
+                   [src]="item.product.images![0].path | imageUrl : 60"
+                   [alt]="item.product.name">
+
+              <div class="order-item-info ms-2">
+                <h6 class="fw-light">
+                  {{item.product.name}}<br>
+                  <small class="text-muted">
+                    Size: {{item.size?.name}}<br>
+                    Qty: 1 @ {{item.price | currency}}<br>
+                    {{item.total | currency}}
+                  </small>
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </section>
+  </aside>
+</div>

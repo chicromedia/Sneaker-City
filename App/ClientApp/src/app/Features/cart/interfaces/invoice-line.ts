@@ -1,4 +1,5 @@
 import { IProduct } from "../../../Shared/interfaces/product";
+import { ISize } from "../../../Shared/interfaces/size";
 
 export interface InvoiceLine
 {
@@ -7,4 +8,7 @@ export interface InvoiceLine
   sizeId: number;
   product: IProduct;
   quantity: number;
+  size: ISize;
+  price: number;
+  total: number;
 }

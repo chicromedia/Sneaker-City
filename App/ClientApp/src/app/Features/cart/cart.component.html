@@ -2,9 +2,13 @@
   <ng-container *ngIf="review$ | async as review">
     <div class="col-md-8">
       <h4 class="cart-basket-title">Basket</h4>
-      <ng-container *ngFor="let item of review.lines">
-        <cart-item [item]="item"></cart-item>
+      <ng-container *ngIf="review.lines.length; else emptyCart">
+        <cart-item *ngFor="let item of review.lines" [item]="item"></cart-item>
       </ng-container>
+
+      <ng-template #emptyCart>
+        There are no items in your bag.
+      </ng-template>
     </div>
 
     <div class="col-md-4">
@@ -34,7 +38,10 @@
         </div>
 
         <div class="cart-summary-action">
-          <button class="btn btn-primary rounded" (click)="doCheckout()">
+          <button class="btn btn-primary rounded"
+                  [routerLink]="['/cart/checkout']"
+                  [disabled]="!canCheckout"
+          >
             Checkout
           </button>
         </div>

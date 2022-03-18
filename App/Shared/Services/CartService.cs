@@ -12,19 +12,24 @@ public class CartService : ICartService
     public Invoice BuildReview(IEnumerable<CartRequest> requests)
     {
         var lines = requests.Select((request, index) =>
-            new InvoiceLine
             {
-                Id = -index,
-                ProductId = request.ProductId,
-                Product = _repository.FirstById(request.ProductId),
-                SizeId = request.SizeId,
-                Quantity = request.Quantity
+                var product = _repository.FirstById(request.ProductId);
+                var total = request.Quantity * product!.Price;
+
+                return new InvoiceLine
+                {
+                    Id = -index,
+                    ProductId = request.ProductId,
+                    Product = product,
+                    SizeId = request.SizeId,
+                    Quantity = request.Quantity,
+                    Price = product.Price,
+                    Total = total
+                };
             }
         ).ToList();
 
-        var subTotal = lines.Aggregate(0.00, (total, line)
-            => total + (line.Quantity * line.Product!.Price)
-        );
+        var subTotal = lines.Aggregate(0.00, (total, line) => total + line.Total);
 
         return new Invoice
         {

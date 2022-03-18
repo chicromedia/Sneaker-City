@@ -3,6 +3,7 @@ import { Select, Store } from "@ngxs/store";
 import { Observable } from "rxjs";
 import { CartState } from "./state-management/cart-state";
 import { Invoice } from "./interfaces/invoice";
+import { PaymentStep } from "./enums/payment-step";
 
 @Component( {
   selector: 'cart',
@@ -22,8 +23,8 @@ export class CartComponent implements OnInit
   {
   }
 
-  doCheckout()
+  get canCheckout()
   {
-
+    return this.store.selectSnapshot( CartState.quantity );
   }
 }

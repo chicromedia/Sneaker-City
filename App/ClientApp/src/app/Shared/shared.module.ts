@@ -4,19 +4,22 @@ import { RouterModule } from "@angular/router";
 import { ImageUrlPipe } from './pipes/image-url.pipe';
 import { CardComponent } from "./components/card/card.component";
 import { ImageGridComponent } from './components/image-grid/image-grid.component';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { ButtonComponent } from './components/button/button.component';
 
 
 @NgModule( {
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     CardComponent,
     ImageUrlPipe,
-    ImageGridComponent
+    ImageGridComponent,
+    ButtonComponent
   ],
   exports: [
     CommonModule,
@@ -24,6 +27,8 @@ import { FormsModule } from "@angular/forms";
     CardComponent,
     ImageUrlPipe,
     ImageGridComponent,
+    ReactiveFormsModule,
+    ButtonComponent,
     FormsModule
   ]
 } )

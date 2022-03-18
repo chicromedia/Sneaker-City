@@ -6,10 +6,12 @@ import { append, iif, patch, removeItem, updateItem } from "@ngxs/store/operator
 import { CartService } from "../services/cart.service";
 import { tap } from "rxjs/operators";
 import { Invoice } from "../interfaces/invoice";
+import { PaymentStep } from "../enums/payment-step";
 
 interface ICartState
 {
   requests: ICartRequest[];
+  step?: PaymentStep;
   review?: Invoice;
 }
 
@@ -38,6 +40,12 @@ export class CartState implements NgxsOnInit
   static requests( { requests }: ICartState )
   {
     return requests;
+  }
+
+  @Selector()
+  static step( { step }: ICartState )
+  {
+    return step;
   }
 
   @Selector()

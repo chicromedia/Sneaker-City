@@ -6,3 +6,9 @@ a {
   text-decoration: none;
   font-weight: 500;
 }
+
+.bg {
+  &-secondary {
+    background-color: $secondary !important;
+  }
+}

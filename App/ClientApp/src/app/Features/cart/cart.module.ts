@@ -4,6 +4,9 @@ import { SharedModule } from "../../Shared/shared.module";
 import { RouterModule } from "@angular/router";
 import { CART_ROUTES } from "./routes";
 import { CartItemComponent } from './components/cart-item/cart-item.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
+import { PaymentFormComponent } from './components/payment-form/payment-form.component';
 
 
 @NgModule( {
@@ -13,7 +16,10 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
   ],
   declarations: [
     CartComponent,
-    CartItemComponent
+    CartItemComponent,
+    CheckoutComponent,
+    ShippingFormComponent,
+    PaymentFormComponent
   ]
 } )
 export class CartModule
