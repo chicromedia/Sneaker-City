@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { InvoiceLine } from "../../interfaces/invoice-line";
 import { Store } from "@ngxs/store";
 import { RemoveProduct, UpdateProduct } from "../../state-management/cart-actions";
 import { ICartRequest } from "../../interfaces/cart-request";
+import { InvoiceLine } from "../../models/invoice-line";
 
 @Component( {
   selector: 'cart-item',

@@ -1,12 +1,12 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
-import { IProduct } from "../../../Shared/interfaces/product";
 import { ProductService } from "../../../Shared/services/product.service";
 import { Injectable } from "@angular/core";
 import { ClearDetails, SetDetails } from "./details-actions";
+import { Product } from "../../../Shared/models/product";
 
 interface IDetailsState
 {
-  info: IProduct;
+  info: Product;
 }
 
 @State<IDetailsState>( {

@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Select, Store } from "@ngxs/store";
 import { DetailsState } from "./state-management/details-state";
 import { Observable } from "rxjs";
-import { IProduct } from "../../Shared/interfaces/product";
 import { ISize } from "../../Shared/interfaces/size";
 import { AddProduct } from "../cart/state-management/cart-actions";
+import { Product } from "../../Shared/models/product";
 
 @Component( {
   selector: 'product-details',
@@ -14,7 +14,7 @@ import { AddProduct } from "../cart/state-management/cart-actions";
 export class DetailsComponent implements OnInit
 {
 
-  @Select( DetailsState.info ) info$: Observable<IProduct>;
+  @Select( DetailsState.info ) info$: Observable<Product>;
 
   public selected: ISize;
 
@@ -31,7 +31,7 @@ export class DetailsComponent implements OnInit
       : `More than 10 available`;
   }
 
-  buy( details: IProduct )
+  buy( details: Product )
   {
     this.store.dispatch( new AddProduct( {
       productId: details.productTypeId,

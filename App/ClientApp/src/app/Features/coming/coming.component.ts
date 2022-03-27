@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from "@ngxs/store";
 import { ClearUpComing, LoadUpComing } from "./state-management/coming-actions";
 import { Observable } from "rxjs";
-import { IProduct } from "../../Shared/interfaces/product";
 import { ComingState } from "./state-management/coming-state";
+import { Product } from "../../Shared/models/product";
 
 @Component( {
   selector: 'coming',
@@ -13,7 +13,7 @@ import { ComingState } from "./state-management/coming-state";
 export class ComingComponent implements OnInit, OnDestroy
 {
 
-  @Select( ComingState.list ) list$: Observable<IProduct[]>;
+  @Select( ComingState.list ) list$: Observable<Product[]>;
 
   constructor( private store: Store ) { }
 

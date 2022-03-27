@@ -18,7 +18,7 @@ export class CanCartViewGuard implements CanActivate
     return this.store.selectOnce( CartState.requests )
       .pipe( map( requests =>
       {
-        return notEmpty( requests ) ? true : this.router.createUrlTree( [ "/" ] )
+        return notEmpty( requests ) ? true : this.router.parseUrl( "/" )
       } ) )
   }
 

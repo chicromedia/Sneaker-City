@@ -3,9 +3,9 @@ import { Select, Store } from "@ngxs/store";
 import { CartState } from "../../state-management/cart-state";
 import { Observable } from "rxjs";
 import { PaymentStep } from "../../enums/payment-step";
-import { Invoice } from "../../interfaces/invoice";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { SetPaymentStep } from "../../state-management/cart-actions";
+import { Invoice } from "../../models/invoice";
 
 @Component( {
   selector: 'checkout',

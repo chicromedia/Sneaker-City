@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Image } from "../../interfaces/image";
+import { IImage } from "../../interfaces/image";
 
 @Component( {
   selector: 'image-grid',
@@ -13,7 +13,7 @@ export class ImageGridComponent implements OnInit
 {
 
   @Input()
-  source: Image[]
+  source: IImage[]
 
   constructor() { }
 

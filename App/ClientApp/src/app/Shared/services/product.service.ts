@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { IProduct } from "../interfaces/product";
 import { environment } from "../../../environments/environment";
+import { Product } from "../models/product";
 
 @Injectable( {
   providedIn: 'root'
@@ -15,21 +15,21 @@ export class ProductService
 
   getFirstByGuid( guid?: string | null )
   {
-    return this.http.get<IProduct>( `${ this.API_BASE_URL }/details/${ guid }` );
+    return this.http.get<Product>( `${ this.API_BASE_URL }/details/${ guid }` );
   }
 
   getAllFeeds()
   {
-    return this.http.get<IProduct[]>( `${ this.API_BASE_URL }/feed` );
+    return this.http.get<Product[]>( `${ this.API_BASE_URL }/feed` );
   }
 
   getAllInStock()
   {
-    return this.http.get<IProduct[]>( `${ this.API_BASE_URL }/in-stock` );
+    return this.http.get<Product[]>( `${ this.API_BASE_URL }/in-stock` );
   }
 
   getAllUpComing()
   {
-    return this.http.get<IProduct[]>( `${ this.API_BASE_URL }/up-coming` );
+    return this.http.get<Product[]>( `${ this.API_BASE_URL }/up-coming` );
   }
 }

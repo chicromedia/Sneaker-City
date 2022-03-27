@@ -1,13 +1,13 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { ProductService } from "../../../Shared/services/product.service";
-import { IProduct } from "../../../Shared/interfaces/product";
 import { tap } from "rxjs/operators";
 import { Injectable } from "@angular/core";
 import { ClearUpComing, LoadUpComing } from "./coming-actions";
+import { Product } from "../../../Shared/models/product";
 
 interface IComingState
 {
-  list: IProduct[]
+  list: Product[]
 }
 
 @State<IComingState>( {

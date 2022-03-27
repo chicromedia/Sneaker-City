@@ -1,11 +1,11 @@
 import { Component, Host, OnInit } from '@angular/core';
-import { Invoice } from "../../interfaces/invoice";
 import { Select, Store } from "@ngxs/store";
 import { CartState } from "../../state-management/cart-state";
 import { Observable } from "rxjs";
 import { FormGroupDirective } from "@angular/forms";
 import { DoCheckout, SetPaymentStep } from "../../state-management/cart-actions";
 import { PaymentStep } from "../../enums/payment-step";
+import { Invoice } from "../../models/invoice";
 
 @Component( {
   selector: 'order-review',

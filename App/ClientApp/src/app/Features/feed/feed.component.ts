@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FeedState } from "./state-management/feed-state";
 import { Observable } from "rxjs";
-import { IProduct } from "../../Shared/interfaces/product";
 import { Select, Store } from "@ngxs/store";
 import { ClearFeeds, LoadFeeds } from "./state-management/feed-actions";
+import { Product } from "../../Shared/models/product";
 
 @Component( {
   selector: 'feed',
@@ -13,7 +13,7 @@ import { ClearFeeds, LoadFeeds } from "./state-management/feed-actions";
 export class FeedComponent implements OnInit, OnDestroy
 {
 
-  @Select( FeedState.list ) list$: Observable<IProduct[]>;
+  @Select( FeedState.list ) list$: Observable<Product[]>;
 
   constructor( private store: Store ) { }
 

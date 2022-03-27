@@ -1,18 +1,18 @@
-import { Action, getValue, NgxsOnInit, Selector, State, StateContext, Store } from "@ngxs/store";
+import { Action, getValue, NgxsOnInit, Selector, State, StateContext } from "@ngxs/store";
 import { ICartRequest } from "../interfaces/cart-request";
 import { Injectable } from "@angular/core";
 import { AddProduct, ClearPayment, DoCheckout, RemoveProduct, SetPaymentStep, UpdateProduct, UpdateReview } from "./cart-actions";
 import { append, iif, patch, removeItem, updateItem } from "@ngxs/store/operators";
 import { CartService } from "../services/cart.service";
 import { tap } from "rxjs/operators";
-import { Invoice } from "../interfaces/invoice";
 import { PaymentStep } from "../enums/payment-step";
 import { FormState } from "../../../Shared/interfaces/form-state";
 import { SalesTransaction } from "../interfaces/sales-transaction";
 import { notEmpty } from "../../../Shared/utils/functions";
 import { GoToPage } from "../../../Shared/state-management/common-actions";
+import { Invoice } from "../models/invoice";
 
-interface ICartState
+export interface ICartState
 {
   checkout: FormState<SalesTransaction>,
   requests: ICartRequest[];
@@ -34,7 +34,7 @@ interface ICartState
 export class CartState implements NgxsOnInit
 {
 
-  constructor( private service: CartService, private store: Store ) {}
+  constructor( private service: CartService ) {}
 
   ngxsOnInit( { dispatch, getState }: StateContext<ICartState> ): void
   {

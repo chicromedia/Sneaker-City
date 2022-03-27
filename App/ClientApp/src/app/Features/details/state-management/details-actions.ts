@@ -1,9 +1,9 @@
-import { IProduct } from "../../../Shared/interfaces/product";
+import { Product } from "../../../Shared/models/product";
 
 export class SetDetails
 {
   static readonly type: string = '[Details] Set';
-  constructor(public payload: IProduct) {}
+  constructor(public payload: Product) {}
 }
 
 export class ClearDetails

@@ -1,13 +1,13 @@
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { ClearFeeds, LoadFeeds } from "./feed-actions";
 import { tap } from "rxjs/operators";
-import { IProduct } from "../../../Shared/interfaces/product";
 import { ProductService } from "../../../Shared/services/product.service";
 import { Injectable } from "@angular/core";
+import { Product } from "../../../Shared/models/product";
 
 interface IFeedState
 {
-  list: IProduct[];
+  list: Product[];
 }
 
 @State<IFeedState>( {
