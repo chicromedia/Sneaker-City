@@ -15,6 +15,7 @@ builder.Services.AddControllers()
 builder.Services.AddDbContext<SqlContext>(opt => opt.UseInMemoryDatabase("SneakerCity"));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductTypeRepository, ProductTypeRepository>();
+builder.Services.AddScoped<IInvoiceRepository, InvoiceRepository>();
 builder.Services.AddScoped<ICartService, CartService>();
 
 var app = builder.Build();

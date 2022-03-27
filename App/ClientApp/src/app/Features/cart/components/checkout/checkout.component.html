@@ -2,29 +2,39 @@
   <h1 class="checkout-title">Checkout</h1>
 </header>
 
-<div class="row checkout-wrap">
+<form [formGroup]="formGroup" class="row checkout-wrap" [ngxsForm]="'cart.checkout'" [ngxsFormClearOnDestroy]="true">
   <main class="col-md-8">
-    <section class="checkout-section">
-      <header class="checkout-section-header">
-        <h2 class="checkout-section-title">1. Delivery Options</h2>
-      </header>
+    <ng-container [ngSwitch]="step$ | async">
+      <section class="checkout-section">
+        <header class="checkout-section-header">
+          <h2 class="checkout-section-title">1. Delivery Options</h2>
+        </header>
 
-      <shipping-form></shipping-form>
-    </section>
+        <ng-template ngSwitchDefault>
+          <shipping-form [formGroupName]="'billingInfo'"></shipping-form>
+        </ng-template>
+      </section>
 
-    <section class="checkout-section">
-      <header class="checkout-section-header">
-        <h2 class="checkout-section-title">2. Payment</h2>
-      </header>
+      <section class="checkout-section">
+        <header class="checkout-section-header">
+          <h2 class="checkout-section-title">2. Payment</h2>
+        </header>
 
-      <payment-form></payment-form>
-    </section>
+        <ng-template [ngSwitchCase]="paymentStep.PAYMENT">
+          <payment-form [formGroupName]="'card'"></payment-form>
+        </ng-template>
+      </section>
 
-    <section class="checkout-section">
-      <header class="checkout-section-header">
-        <h2 class="checkout-section-title">3. Order Review</h2>
-      </header>
-    </section>
+      <section class="checkout-section">
+        <header class="checkout-section-header">
+          <h2 class="checkout-section-title">3. Order Review</h2>
+        </header>
+
+        <ng-template [ngSwitchCase]="paymentStep.REVIEW">
+          <order-review></order-review>
+        </ng-template>
+      </section>
+    </ng-container>
   </main>
 
   <aside class="col-md-4">
@@ -80,8 +90,10 @@
           <div class="order-items">
             <div class="d-flex" *ngFor="let item of review.lines">
               <img class="img-fluid"
-                   [src]="item.product.images![0].path | imageUrl : 60"
-                   [alt]="item.product.name">
+                   [src]="item.product.images![0].path | imageUrl : 80"
+                   [alt]="item.product.name"
+                   [style.height.px]="80"
+              >
 
               <div class="order-item-info ms-2">
                 <h6 class="fw-light">
@@ -99,4 +111,4 @@
       </ng-container>
     </section>
   </aside>
-</div>
+</form>

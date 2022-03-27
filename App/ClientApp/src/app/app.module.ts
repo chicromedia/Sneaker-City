@@ -11,6 +11,7 @@ import { CommonState } from "./Shared/state-management/common-state";
 import { CartState } from "./Features/cart/state-management/cart-state";
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { MenuState } from "./Layout/state-management/menu-state";
+import { NgxsFormPluginModule } from "@ngxs/form-plugin";
 
 @NgModule( {
   imports: [
@@ -26,12 +27,13 @@ import { MenuState } from "./Layout/state-management/menu-state";
       ],
       { developmentMode: !environment.production }
     ),
+    NgxsFormPluginModule.forRoot(),
     NgxsStoragePluginModule.forRoot( {
       key: [
         CommonState,
         CartState
       ]
-    } ),
+    } )
   ],
   declarations: [
     AppComponent,

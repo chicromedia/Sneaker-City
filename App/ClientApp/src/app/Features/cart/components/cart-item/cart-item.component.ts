@@ -14,6 +14,10 @@ export class CartItemComponent implements OnInit
 
   @Input()
   item: InvoiceLine;
+  @Input()
+  readOnly: boolean;
+  @Input()
+  thumbnailWidth: number = 180;
 
   constructor( private store: Store ) { }
 

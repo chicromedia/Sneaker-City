@@ -14,7 +14,7 @@
 
   <div class="card-footer">
     <ng-container *ngIf="item.inStock; else soldOut">
-      <a class="btn btn-primary rounded" [routerLink]="['/details', item.guid]">Learn More</a>
+      <btn-link [label]="'Learn More'" [routerLink]="['/details', item.guid]"></btn-link>
     </ng-container>
 
     <ng-template #soldOut>
@@ -22,7 +22,7 @@
         <small>{{item.type.name}}</small><br>
         {{item.name}}
       </h3>
-      <a class="btn btn-primary rounded">Notify Me</a>
+      <btn-link [label]="'Notify Me'" (click)="notify()"></btn-link>
     </ng-template>
   </div>
 </div>

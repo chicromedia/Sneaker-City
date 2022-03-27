@@ -1,15 +1,20 @@
-import { Action, NgxsOnInit, Selector, State, StateContext, Store } from "@ngxs/store";
+import { Action, getValue, NgxsOnInit, Selector, State, StateContext, Store } from "@ngxs/store";
 import { ICartRequest } from "../interfaces/cart-request";
 import { Injectable } from "@angular/core";
-import { AddProduct, RemoveProduct, UpdateProduct, UpdateReview } from "./cart-actions";
+import { AddProduct, ClearPayment, DoCheckout, RemoveProduct, SetPaymentStep, UpdateProduct, UpdateReview } from "./cart-actions";
 import { append, iif, patch, removeItem, updateItem } from "@ngxs/store/operators";
 import { CartService } from "../services/cart.service";
 import { tap } from "rxjs/operators";
 import { Invoice } from "../interfaces/invoice";
 import { PaymentStep } from "../enums/payment-step";
+import { FormState } from "../../../Shared/interfaces/form-state";
+import { SalesTransaction } from "../interfaces/sales-transaction";
+import { notEmpty } from "../../../Shared/utils/functions";
+import { GoToPage } from "../../../Shared/state-management/common-actions";
 
 interface ICartState
 {
+  checkout: FormState<SalesTransaction>,
   requests: ICartRequest[];
   step?: PaymentStep;
   review?: Invoice;
@@ -18,6 +23,10 @@ interface ICartState
 @State<ICartState>( {
   name: 'cart',
   defaults: {
+    checkout: {
+      model: undefined
+    },
+    step: PaymentStep.DELIVERY,
     requests: []
   }
 } )
@@ -30,7 +39,7 @@ export class CartState implements NgxsOnInit
   ngxsOnInit( { dispatch, getState }: StateContext<ICartState> ): void
   {
     const { requests } = getState();
-    if ( requests.length )
+    if ( notEmpty( requests ) )
     {
       dispatch( new UpdateReview() );
     }
@@ -57,7 +66,13 @@ export class CartState implements NgxsOnInit
   @Selector()
   static quantity( { requests }: ICartState )
   {
-    return requests?.reduce( ( total, item ) => total + Number( item.quantity ), 0 );
+    return requests?.length;
+  }
+
+  @Selector()
+  static orderId( { review }: ICartState )
+  {
+    return review?.orderId;
   }
 
   @Action( AddProduct )
@@ -85,9 +100,38 @@ export class CartState implements NgxsOnInit
   @Action( UpdateReview )
   review( { getState, patchState }: StateContext<ICartState> )
   {
-    const { requests } = getState();
-    return this.service.getReview( requests )
+    const { requests, review } = getState();
+    return this.service.getReview( requests, getValue( review, 'orderId' ) )
       .pipe( tap( review => patchState( { review } ) ) );
+  }
+
+  @Action( SetPaymentStep )
+  setSep( { patchState }: StateContext<ICartState>, { payload }: SetPaymentStep )
+  {
+    patchState( { step: payload } );
+  }
+
+  @Action( DoCheckout )
+  checkout( { getState, setState, dispatch }: StateContext<ICartState> )
+  {
+    const { checkout } = getState();
+    return this.service.checkout( checkout.model )
+      .pipe(
+        tap( ( { orderId } ) =>
+        {
+          setState( patch( {
+            step: PaymentStep.COMPLETE,
+            review: patch( { orderId } )
+          } ) );
+          dispatch( new GoToPage( [ "/cart/confirm", orderId ] ) );
+        } )
+      )
+  }
+
+  @Action( ClearPayment )
+  clearPayment( { setState }: StateContext<ICartState>, { payload }: SetPaymentStep )
+  {
+    setState( { step: PaymentStep.DELIVERY, requests: [], checkout: { model: undefined } } );
   }
 
   @Action( RemoveProduct )

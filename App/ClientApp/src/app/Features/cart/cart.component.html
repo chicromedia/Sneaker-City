@@ -38,12 +38,11 @@
         </div>
 
         <div class="cart-summary-action">
-          <button class="btn btn-primary rounded"
-                  [routerLink]="['/cart/checkout']"
-                  [disabled]="!canCheckout"
-          >
-            Checkout
-          </button>
+          <btn-link [label]="'Checkout'"
+                    [routerLink]="['/cart/checkout']"
+                    [block]="true"
+                    [disabled]="!canCheckout"
+          ></btn-link>
         </div>
       </div>
     </div>

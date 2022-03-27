@@ -1,4 +1,5 @@
 import { ICartRequest } from "../interfaces/cart-request";
+import { PaymentStep } from "../enums/payment-step";
 
 export class AddProduct
 {
@@ -27,5 +28,17 @@ export class UpdateReview
 export class DoCheckout
 {
   static readonly type: string = "[Cart] DoCheckout";
+  constructor() {}
+}
+
+export class SetPaymentStep
+{
+  static readonly type: string = "[Cart] SetPaymentStep";
+  constructor(public payload: PaymentStep) {}
+}
+
+export class ClearPayment
+{
+  static readonly type: string = "[Cart] ClearPayment";
   constructor() {}
 }

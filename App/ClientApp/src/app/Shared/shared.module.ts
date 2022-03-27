@@ -6,6 +6,7 @@ import { CardComponent } from "./components/card/card.component";
 import { ImageGridComponent } from './components/image-grid/image-grid.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ButtonComponent } from './components/button/button.component';
+import { NgxsFormPluginModule } from "@ngxs/form-plugin";
 
 
 @NgModule( {
@@ -13,7 +14,8 @@ import { ButtonComponent } from './components/button/button.component';
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxsFormPluginModule
   ],
   declarations: [
     CardComponent,
@@ -29,7 +31,8 @@ import { ButtonComponent } from './components/button/button.component';
     ImageGridComponent,
     ReactiveFormsModule,
     ButtonComponent,
-    FormsModule
+    FormsModule,
+    NgxsFormPluginModule
   ]
 } )
 export class SharedModule

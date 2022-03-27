@@ -1,0 +1,23 @@
+<h6 class="text-uppercase">Your order</h6>
+
+<div class="order-review">
+  <ng-container *ngIf="review$ | async as review">
+    <cart-item *ngFor="let item of review.lines"
+               [item]="item"
+               [readOnly]="true"
+               [thumbnailWidth]="80"
+    ></cart-item>
+  </ng-container>
+</div>
+
+<div class="d-flex justify-content-end">
+  <btn-link [label]="'Back'"
+            [primary]="false"
+            (click)="back()"
+  ></btn-link>
+
+  <btn-link [label]="'Confirm Order'"
+            [disabled]="!!directive.invalid"
+            (click)="confirm()"
+  ></btn-link>
+</div>

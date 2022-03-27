@@ -1,1 +1,38 @@
-<p>payment-form works!</p>
+<div class="payment-select">
+  <h6 class="text-uppercase">Add to creditcard info</h6>
+</div>
+
+<form [formGroup]="directive!.control" class="row mb-3">
+  <div class="col-6">
+    <label class="form-label" for="cardNumber">
+      Cart Number
+    </label>
+    <input [formControlName]="'number'" [placeholder]="'Card Number'" class="form-control" id="cardNumber">
+  </div>
+
+  <div class="col-3">
+    <label class="form-label" for="cardExpire">
+      Expiration Date
+    </label>
+    <input [formControlName]="'expire'" [placeholder]="'MM/YY'" class="form-control" id="cardExpire" maxlength="5">
+  </div>
+
+  <div class="col-3">
+    <label class="form-label" for="cardSecureCode">
+      Security Code
+    </label>
+    <input [formControlName]="'secureCode'" [placeholder]="'XXX'" class="form-control" id="cardSecureCode" maxlength="3">
+  </div>
+</form>
+
+<div class="d-flex justify-content-end">
+  <btn-link [label]="'Back'"
+            [primary]="false"
+            (click)="back()"
+  ></btn-link>
+
+  <btn-link [label]="'Continue'"
+            [disabled]="!!directive?.invalid"
+            (click)="continue()"
+  ></btn-link>
+</div>

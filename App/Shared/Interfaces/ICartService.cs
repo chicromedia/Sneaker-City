@@ -1,8 +1,10 @@
 using App.Models;
+using App.Shared.DTOs;
 
 namespace App.Shared.Interfaces;
 
 public interface ICartService
 {
-    Invoice BuildReview(IEnumerable<CartRequest> requests);
+    Invoice MakeInvoice(string orderId, IEnumerable<CartRequest> requests);
+    Task<Invoice> RunTransaction(SalesTransaction transaction);
 }

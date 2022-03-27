@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { Component, Host, OnInit } from '@angular/core';
+import { FormGroupName } from "@angular/forms";
+import { Store } from "@ngxs/store";
+import { PaymentStep } from "../../enums/payment-step";
+import { SetPaymentStep } from "../../state-management/cart-actions";
 
 @Component( {
   selector: 'shipping-form',
@@ -9,22 +12,21 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 export class ShippingFormComponent implements OnInit
 {
 
-  public formGroup: FormGroup;
-
-  constructor( private fb: FormBuilder ) { }
+  constructor( @Host() public directive: FormGroupName,
+               private store: Store
+  )
+  { }
 
   ngOnInit(): void
   {
-    this.formGroup = this.fb.group( {
-      firstName: [ '' ],
-      lastName: [ '' ],
-      address: [ '' ],
-      city: [ '' ],
-      state: [ '' ],
-      zip: [ '' ],
-      email: [ '' ],
-      phone: [ '' ],
-    } );
+
   }
 
+  continue()
+  {
+    if ( this.directive.valid )
+    {
+      this.store.dispatch( new SetPaymentStep( PaymentStep.PAYMENT ) );
+    }
+  }
 }

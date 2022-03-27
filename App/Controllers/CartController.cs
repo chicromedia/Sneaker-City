@@ -1,5 +1,7 @@
 using App.Models;
+using App.Shared.DTOs;
 using App.Shared.Interfaces;
+using App.Shared.Utils;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Controllers;
@@ -13,6 +15,17 @@ public class CartController : ControllerBase
     public CartController(ICartService service) => _service = service;
 
     [HttpPost("review")]
-    public ActionResult<Invoice> Review(IList<CartRequest> requests)
-        => _service.BuildReview(requests);
+    public ActionResult<Invoice> Review([FromQuery] string? orderId, IList<CartRequest> requests)
+        => _service.MakeInvoice((orderId ?? GuidGenerator.NewOrderId())!, requests);
+
+    [HttpPut("checkout")]
+    public async Task<ActionResult<Invoice>> Checkout(SalesTransaction transaction)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest();
+        }
+
+        return await _service.RunTransaction(transaction);
+    }
 }

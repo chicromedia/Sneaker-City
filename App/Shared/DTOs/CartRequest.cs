@@ -1,4 +1,4 @@
-namespace App.Shared.Interfaces;
+namespace App.Shared.DTOs;
 
 public class CartRequest
 {

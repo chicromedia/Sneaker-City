@@ -25,4 +25,8 @@ export class CardComponent implements OnInit
   {
   }
 
+  notify()
+  {
+
+  }
 }

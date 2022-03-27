@@ -8,6 +8,7 @@ public sealed class SqlContext : DbContext
 {
     public DbSet<Product> Products { get; set; } = null!;
     public DbSet<ProductType> ProductTypes { get; set; } = null!;
+    public DbSet<Invoice> Invoices { get; set; } = null!;
 
     public SqlContext(DbContextOptions<SqlContext> options) : base(options)
     {

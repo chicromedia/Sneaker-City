@@ -2,12 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 
 @Component( {
   selector: 'btn-link',
-  template: '{{label}}',
   styleUrls: [ './button.component.scss' ],
+  template: '{{label}}',
   host: {
     '[class.btn]': 'true',
     '[class.btn-primary]': 'primary',
-    '[class.btn-block]': 'block'
+    '[class.btn-outline-secondary]': '!primary',
+    '[class.btn-block]': 'block',
+    '[disabled]': 'disabled'
   }
 } )
 export class ButtonComponent implements OnInit
@@ -20,6 +22,8 @@ export class ButtonComponent implements OnInit
   label: string;
   @Input()
   disabled: boolean;
+  @Input()
+  loading: boolean;
 
   constructor() { }
 

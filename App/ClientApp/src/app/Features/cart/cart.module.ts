@@ -7,6 +7,8 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ShippingFormComponent } from './components/shipping-form/shipping-form.component';
 import { PaymentFormComponent } from './components/payment-form/payment-form.component';
+import { OrderReviewComponent } from './components/order-review/order-review.component';
+import { PaymentConfirmComponent } from './components/payment-confirm/payment-confirm.component';
 
 
 @NgModule( {
@@ -19,7 +21,9 @@ import { PaymentFormComponent } from './components/payment-form/payment-form.com
     CartItemComponent,
     CheckoutComponent,
     ShippingFormComponent,
-    PaymentFormComponent
+    PaymentFormComponent,
+    OrderReviewComponent,
+    PaymentConfirmComponent
   ]
 } )
 export class CartModule

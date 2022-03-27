@@ -8,13 +8,15 @@
   }
 }
 
+:host-context(cart) {
+  .cart-item-body{
+    min-height: 140px;
+  }
+}
+
 .cart-item {
   &-name, &-category {
     margin-bottom: 0.5rem;
-  }
-
-  &-body {
-    min-height: 140px;
   }
 
   &-thumbnail {
@@ -25,7 +27,6 @@
 
   &-wrap {
     flex: 1 auto;
-    min-height: 123px;
   }
 
   &-selector-tools {

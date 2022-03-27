@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace App.Models;
 
@@ -12,5 +13,5 @@ public class InvoiceLine
     public double Price { get; set; }
     public double Total { get; set; }
     public Product? Product { get; set; }
-    public Invoice? Invoice { get; set; }
+    [JsonIgnore] public Invoice? Invoice { get; set; }
 }

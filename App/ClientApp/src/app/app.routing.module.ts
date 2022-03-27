@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+ import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import { LayoutComponent } from "./Layout/layout.component";
 import { MainRoutes } from "./Shared/interfaces/routes";
