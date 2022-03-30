@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class ImageUrlPipe implements PipeTransform
 {
 
-  transform( path: string, w: number = 960, f: string = 'auto' ): string
+  transform( path: string | undefined, w: number = 960, f: string = 'auto' ): string
   {
     return `https://static.nike.com/a/images/t_prod_ss/w_${ w },c_limit,f_${ f }/${ path }`;
   }

@@ -1,28 +1,30 @@
-<div class="card" [ngClass]="{'in-stock': !!item.inStock}">
-  <ng-container *ngIf="showDate">
-    <div class="date-caption">
-      <span class="date-month">{{item.purchaseStartDate | date: 'MMM'}}</span>
-      <span class="date-day">{{item.purchaseStartDate | date: 'dd'}}</span>
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="item.images?.length">
-    <a class="card-link" [routerLink]="['/details', item.guid]">
-      <img class="card-img-top" [src]="item.images[0].path | imageUrl" [attr.alt]="item.name" loading="lazy">
-    </a>
-  </ng-container>
-
-  <div class="card-footer">
-    <ng-container *ngIf="item.inStock; else soldOut">
-      <btn-link [label]="'Learn More'" [routerLink]="['/details', item.guid]"></btn-link>
+<ng-container *ngIf="item">
+  <div class="card" [ngClass]="{'in-stock': !!item.inStock}">
+    <ng-container *ngIf="showDate">
+      <div class="date-caption">
+        <span class="date-month">{{item.purchaseStartDate | date: 'MMM'}}</span>
+        <span class="date-day">{{item.purchaseStartDate | date: 'dd'}}</span>
+      </div>
     </ng-container>
 
-    <ng-template #soldOut>
-      <h3 class="card-title">
-        <small>{{item.type.name}}</small><br>
-        {{item.name}}
-      </h3>
-      <btn-link [label]="'Notify Me'" (click)="notify()"></btn-link>
-    </ng-template>
+    <ng-container *ngIf="item.images?.length">
+      <a class="card-link" [routerLink]="['/details', item.guid]">
+        <img class="card-img-top" [src]="item.images[0].path | imageUrl" [attr.alt]="item.name" loading="lazy">
+      </a>
+    </ng-container>
+
+    <div class="card-footer">
+      <ng-container *ngIf="item.inStock; else soldOut">
+        <btn-link [label]="'Learn More'" [routerLink]="['/details', item.guid]"></btn-link>
+      </ng-container>
+
+      <ng-template #soldOut>
+        <h3 class="card-title">
+          <small>{{item.type.name}}</small><br>
+          {{item.name}}
+        </h3>
+        <btn-link [label]="'Notify Me'" (click)="notify()"></btn-link>
+      </ng-template>
+    </div>
   </div>
-</div>
+</ng-container>

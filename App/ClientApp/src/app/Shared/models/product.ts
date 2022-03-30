@@ -14,8 +14,8 @@ export class Product
   purchaseStartDate: string;
   purchaseEndDate: string;
   price: number;
-  images: Partial<IImage>[];
-  sizes: Partial<ISize>[];
+  images: IImage[];
+  sizes: ISize[];
 
   constructor( props: Partial<Product> = {} )
   {

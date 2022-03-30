@@ -9,6 +9,7 @@ import { ProductType } from "./app/Shared/models/product-type";
 import { setValue, Store } from "@ngxs/store";
 import { ICartState } from "./app/Features/cart/state-management/cart-state";
 import { ISize } from "./app/Shared/interfaces/size";
+import { IImage } from "./app/Shared/interfaces/image";
 
 declare const require: {
   context( path: string, deep?: boolean, filter?: RegExp ): {
@@ -52,7 +53,7 @@ export abstract class TestUtils
       price,
       inStock: !!quantity,
       images: [
-        { path: 'ca61e76f/air-max-sleepers.jpg' }
+        { path: 'ca61e76f/air-max-sleepers.jpg' } as IImage
       ],
       type: new ProductType( {
         name: 'SKNRS Live',
