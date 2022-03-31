@@ -7,10 +7,10 @@ public interface IProductRepository
 {
     Product? FirstByGuid(string guid);
 
-    IEnumerable<Product> Find();
+    IList<Product> Find();
 
-    IEnumerable<Product> FindInStock();
+    IList<Product> FindInStock();
 
-    IEnumerable<Product> FindUpComing();
+    IList<Product> FindUpComing();
     Product? FirstById(int id);
 }

@@ -13,7 +13,7 @@ public class ProductsController : ControllerBase
     public ProductsController(IProductRepository repository) => _repository = repository;
 
     [HttpGet("details/{guid}")]
-    public ActionResult<Product> GetDetails(string guid)
+    public IActionResult GetDetails(string guid)
     {
         if (string.IsNullOrEmpty(guid))
             return BadRequest();
@@ -23,20 +23,32 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet("feed")]
-    public ActionResult<Product[]> GetFeed()
+    public IActionResult GetFeed()
     {
-        return _repository.Find().ToArray();
+        var products = _repository.Find();
+
+        return products.Count > 0
+            ? Ok(products)
+            : NoContent();
     }
 
     [HttpGet("in-stock")]
-    public ActionResult<Product[]> GetInStock()
+    public IActionResult GetInStock()
     {
-        return _repository.FindInStock().ToArray();
+        var products = _repository.FindInStock();
+
+        return products.Count > 0
+            ? Ok(products)
+            : NoContent();
     }
 
     [HttpGet("up-coming")]
-    public ActionResult<Product[]> GetUpComing()
+    public IActionResult GetUpComing()
     {
-        return _repository.FindUpComing().ToArray();
+        var products = _repository.FindUpComing();
+
+        return products.Count > 0
+            ? Ok(products)
+            : NoContent();
     }
 }

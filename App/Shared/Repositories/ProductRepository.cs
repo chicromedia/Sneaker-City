@@ -40,7 +40,7 @@ public class ProductRepository : IProductRepository
             })
             .FirstOrDefault(p => p!.Guid == guid);
 
-    public IEnumerable<Product> Find() =>
+    public IList<Product> Find() =>
         _context.Products
             .Include(p => p.Images!.Where(i => i.Featured == Available.Yes))
             .Include(p => p.Type)
@@ -51,9 +51,9 @@ public class ProductRepository : IProductRepository
             {
                 p.InStock = DateTime.Today >= p.PurchaseStartDate && DateTime.Today <= p.PurchaseEndDate;
                 return p;
-            });
+            }).ToList();
 
-    public IEnumerable<Product> FindInStock()
+    public IList<Product> FindInStock()
         => _context.Products
             .Include(p => p.Images!.Where(i => i.Featured == Available.Yes))
             .Include(p => p.Type)
@@ -65,13 +65,14 @@ public class ProductRepository : IProductRepository
             {
                 p.InStock = true;
                 return p;
-            });
+            }).ToList();
 
-    public IEnumerable<Product> FindUpComing()
+    public IList<Product> FindUpComing()
         => _context.Products
             .Include(p => p.Images!.Where(i => i.Featured == Available.Yes))
             .Include(p => p.Type)
             .Where(p => DateTime.Today < p.PurchaseStartDate)
             .OrderByDescending(p => p.PurchaseStartDate)
-            .Take(10);
+            .Take(10)
+            .ToList();
 }

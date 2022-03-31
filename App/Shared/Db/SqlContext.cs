@@ -1,22 +1,23 @@
 using App.Models;
 using App.Shared.Enums;
+using App.Shared.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Shared.Db;
 
-public sealed class SqlContext : DbContext
+public class SqlContext : DbContext
 {
-    public DbSet<Product> Products { get; set; } = null!;
-    public DbSet<ProductType> ProductTypes { get; set; } = null!;
-    public DbSet<Invoice> Invoices { get; set; } = null!;
+    public virtual DbSet<Product> Products { get; set; } = null!;
+    public virtual DbSet<ProductType> ProductTypes { get; set; } = null!;
+    public virtual DbSet<Invoice> Invoices { get; set; } = null!;
 
     public SqlContext(DbContextOptions<SqlContext> options) : base(options)
     {
-        Database.EnsureCreated();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        Database.EnsureCreated();
         modelBuilder.Entity<ProductType>().HasData(
             new ProductType { Id = 1, Name = "Air Jordan 12", IsAvailable = Available.Yes },
             new ProductType { Id = 2, Name = "Air Jordan 13", IsAvailable = Available.Yes },

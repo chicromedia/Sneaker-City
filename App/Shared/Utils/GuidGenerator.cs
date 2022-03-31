@@ -6,7 +6,7 @@ public abstract class GuidGenerator
 {
     private static readonly Random Random = new();
 
-    public static string? NewOrderId(int size = 15)
+    public static string NewOrderId(int size = 15)
     {
         var builder = new StringBuilder(size);
         for (var i = 0; i < size; i++)

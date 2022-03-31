@@ -15,17 +15,18 @@ public class CartController : ControllerBase
     public CartController(ICartService service) => _service = service;
 
     [HttpPost("review")]
-    public ActionResult<Invoice> Review([FromQuery] string? orderId, IList<CartRequest> requests)
-        => _service.MakeInvoice((orderId ?? GuidGenerator.NewOrderId())!, requests);
+    public IActionResult Review([FromQuery] string? orderId, IList<CartRequest> requests)
+        => Ok(_service.MakeInvoice((orderId ?? GuidGenerator.NewOrderId())!, requests));
 
     [HttpPut("checkout")]
-    public async Task<ActionResult<Invoice>> Checkout(SalesTransaction transaction)
+    public async Task<IActionResult> Checkout(SalesTransaction transaction)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest();
         }
 
-        return await _service.RunTransaction(transaction);
+        var invoice = await _service.RunTransaction(transaction);
+        return Ok(invoice);
     }
 }

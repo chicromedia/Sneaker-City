@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{C3FD69D3-6FE0-4747-B73C-CB927AA150BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unitest", "UniTest\UniTest.csproj", "{408467DD-E1A7-49D8-9ED6-F4CC3E9F2C9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{C3FD69D3-6FE0-4747-B73C-CB927AA150BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3FD69D3-6FE0-4747-B73C-CB927AA150BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3FD69D3-6FE0-4747-B73C-CB927AA150BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{408467DD-E1A7-49D8-9ED6-F4CC3E9F2C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{408467DD-E1A7-49D8-9ED6-F4CC3E9F2C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{408467DD-E1A7-49D8-9ED6-F4CC3E9F2C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{408467DD-E1A7-49D8-9ED6-F4CC3E9F2C9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

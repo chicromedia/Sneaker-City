@@ -37,14 +37,14 @@
               <li *ngFor="let size of details.sizes" class="nav-item">
                 <button class="btn product-size-button"
                         type="button"
-                        [ngClass]="{'disabled': size.stock, 'selected':selected && selected.id == size.id}"
+                        [ngClass]="{'disabled': !size.stock, 'selected':selected && selected.id == size.id}"
                         (click)="selected = size"
                 >{{size.name}}</button>
               </li>
             </ul>
 
             <p class="product-size-stock">
-              <ng-container *ngIf="selected && selected.stock">
+              <ng-container *ngIf="selected?.stock">
                 {{availableLabel}}
               </ng-container>
             </p>
