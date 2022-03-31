@@ -85,7 +85,7 @@ export class CartState implements NgxsOnInit
         append( [ payload ] )
       )
     } ) )
-    return dispatch( new UpdateReview() );
+    return dispatch( [ new UpdateReview(), new GoToPage( [ "/cart" ] ) ] );
   }
 
   @Action( UpdateProduct )

@@ -13,11 +13,11 @@ public class SqlContext : DbContext
 
     public SqlContext(DbContextOptions<SqlContext> options) : base(options)
     {
+        base.Database.EnsureCreated();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        Database.EnsureCreated();
         modelBuilder.Entity<ProductType>().HasData(
             new ProductType { Id = 1, Name = "Air Jordan 12", IsAvailable = Available.Yes },
             new ProductType { Id = 2, Name = "Air Jordan 13", IsAvailable = Available.Yes },
